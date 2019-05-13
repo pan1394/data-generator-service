@@ -4,6 +4,7 @@ package com.linkstec.mock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -11,6 +12,8 @@ import com.linkstec.mock.excel.ExcelReader;
 import com.linkstec.mock.excel.ExcelWriter;
 import com.linkstec.mock.excel.vo.ExcelMetaData;
 import com.linkstec.mock.processor.MockData4DB;
+
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,18 +34,19 @@ public class MyTest {
 	@Autowired
 	private com.linkstec.mock.excel.v2.ExcelReader reader2;
 
+	@Value("${file.folder.template}")
+	private String path;
+
 	@Test
 	public void generate() {
-	    String path = "D:\\data-generation-service\\template\\";
-	    String input = path + "template.copy.xlsx";
-	    String output = path + "test.xlsx";
+	    String input = path + "template.xlsx";
+	    String output = path + "out.xlsx";
 	    mock.MockData(input, output);
 	}
 
 	@Test
 	public void read() {
-		String path = "D:\\data-generation-service\\template\\";
-		String input = path + "template.copy.xlsx";
+		String input = path + "template.xlsx";
 		try {
 			ExcelMetaData metaData = reader.read(input);
 		} catch (Exception e) {
@@ -52,8 +56,7 @@ public class MyTest {
 
 	@Test
 	public void write() {
-		String path = "D:\\data-generation-service\\template\\";
-		String input = path + "template.copy.xlsx";
+		String input = path + "template.xlsx";
 		String output = path + "out.xlsx";
 		try {
 			ExcelMetaData metaData = reader.read(input);
@@ -65,7 +68,6 @@ public class MyTest {
 
 	@Test
 	public void read_v2() {
-		String path = "D:\\data-generation-service\\template\\";
 		String input = path + "template.v2.xlsx";
 		try {
 			 reader2.read(input);
@@ -77,7 +79,6 @@ public class MyTest {
 
 	@Test
 	public void write_v2() {
-		String path = "D:\\data-generation-service\\template\\";
 		String input = path + "template.v2.xlsx";
 		String output = path + "out.v2.xlsx";
 		try {
