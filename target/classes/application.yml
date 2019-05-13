@@ -1,0 +1,42 @@
+server:
+  port: 8080
+spring:
+  datasource:
+      druid:
+        username: aws_position
+        password: mbeni@916@1
+        jdbcUrl: jdbc:sqlserver://198.19.119.5:1433;DatabaseName=Beny
+        driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        filters: stat,wall #配置过滤器
+        maxPoolPreparedStatementPerConnectionSize: 20
+        useGlobalDataSourceStat: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  http:
+     multipart:
+        maxFileSize:100Mb
+        maxRequestSize:100Mb
+         
+         
+#配置mybaits
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  
+file:
+   folder:
+      upload: D:\data-generation-service\upload\
+      template: D:\data-generation-service\template\
+      download: D:\data-generation-service\download\
+      templateName: template.v2.xlsx
+  

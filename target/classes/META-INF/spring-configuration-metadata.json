@@ -1,0 +1,62 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid",
+      "type": "com.linkstec.mock.config.DruidDataSourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.driver-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.filters",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.initial-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.jdbc-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.max-active",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.max-wait",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.pool-prepared-statements",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.linkstec.mock.config.DruidDataSourceProperties",
+      "name": "spring.datasource.druid.username",
+      "type": "java.lang.String"
+    }
+  ]
+}
