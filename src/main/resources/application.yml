@@ -4,8 +4,9 @@ spring:
   datasource:
       druid:
         username: aws_position
-        password: mbeni@916@1
-        jdbcUrl: jdbc:sqlserver://198.19.119.5:1433;DatabaseName=Beny
+        #password: mbeni@916@1
+        password: linkage@123456
+        jdbcUrl: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Beny
         driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
         initialSize: 5
         minIdle: 5
