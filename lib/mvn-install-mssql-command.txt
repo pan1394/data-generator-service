@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=D:/data-generation-service/dataset/lib/mssql-jdbc-7.0.0.jre8.jar -DgroupId=mssql -DartifactId=jdbc -Dversion=7.0.0.jre8 -Dpackaging=jar
