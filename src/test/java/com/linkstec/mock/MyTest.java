@@ -68,7 +68,7 @@ public class MyTest {
 
 	@Test
 	public void read_v2() {
-		String input = path + "template.v2.1.xlsx";
+		String input = path + "template.v2.xlsx";
 		try {
 			 reader2.read(input);
 		} catch (Exception e) {
@@ -79,8 +79,8 @@ public class MyTest {
 
 	@Test
 	public void write_v2() {
-		String input = path + "template.v2.1.xlsx";
-		String output = path + "out.v2.1.xlsx";
+		String input = path + "template.v2.xlsx";
+		String output = path + "out.v2.xlsx";
 		try {
 			writer2.write(reader2.read(input), output);
 		} catch (Exception e) {

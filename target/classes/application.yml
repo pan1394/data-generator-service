@@ -1,11 +1,12 @@
 server:
   port: 8080
 spring:
+#数据源德鲁伊
   datasource:
       druid:
         username: aws_position
         #password: mbeni@916@1
-        password: xxxxx@123456
+        password: linkage@123456
         jdbcUrl: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=Beny
         driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
         initialSize: 5
@@ -23,12 +24,15 @@ spring:
         maxPoolPreparedStatementPerConnectionSize: 20
         useGlobalDataSourceStat: true
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
- 
+#上传多部配置
   servlet:
     multipart:
       max-file-size: 100Mb
       max-request-size: 100Mb
-      
+#前端thymeleaf
+  thymeleaf:
+    cache: false
+    prefix: classpath:/static/ #页面路径 
 #配置mybaits
 mybatis:
   configuration:

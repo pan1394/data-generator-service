@@ -48,7 +48,7 @@ public class IndexController {
 
 	@RequestMapping("/index")
 	public String index() {
-		return "/";
+		return "/data-generator";
 	}
 
 	@GetMapping("/download")

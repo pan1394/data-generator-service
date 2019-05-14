@@ -42,7 +42,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 * @param registry
 	 */
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("index.html");
+		registry.addViewController("/").setViewName("data-generator.html");
 		registry.addViewController("/success").setViewName("success.html");
 	}
 
@@ -52,5 +52,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		super.addResourceHandlers(registry);
 	}
 
- 
+
 }
