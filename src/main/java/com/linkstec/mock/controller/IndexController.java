@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.linkstec.mock.processor.MockData4DB;
@@ -62,8 +62,6 @@ public class IndexController {
 	public String uploadImg(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
 		String contentType = file.getContentType();
 		String fileName = file.getOriginalFilename();
-		// System.out.println("fileName-->" + fileName);
-		// System.out.println("getContentType-->" + contentType);
 		int start = fileName.lastIndexOf(File.separator);
 		fileName = fileName.substring(start + 1);
 		int suffix = fileName.lastIndexOf(".");
@@ -84,6 +82,8 @@ public class IndexController {
 		return "/index";
 	}
 
+
+	@ResponseBody
 	@RequestMapping(path = "/upload/v2", method = RequestMethod.POST)
 	public String upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
 		String contentType = file.getContentType();
@@ -98,7 +98,7 @@ public class IndexController {
 		fileName = String.format("%s%s.%s", preStr, appender, suffixStr);
 		try {
 			String inputFile = IndexController.uploadFile(file.getBytes(), this.uploadPath, fileName);
-			String templateName = String.format("output%s.xlsx", appender);
+			String templateName = String.format("output.%s.xlsx", appender);
 			String downloadFilePath = downloadPath + File.separator + templateName;
 			writer2.write(reader2.read(inputFile), downloadFilePath);
 			String ret = IndexController.download(response, downloadFilePath, templateName);
@@ -111,36 +111,30 @@ public class IndexController {
 	private static String download(HttpServletResponse response, String downloadFile, String fileName) {
 		File file = new File(downloadFile);
 		if (file.exists()) {
-			// response.setContentType("application/vnd.ms-excel; charset=utf-8");
-			response.setContentType("application/octet-stream; charset=utf-8");
+			response.setContentType("application/vnd.ms-excel; charset=utf-8");
 			response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
 			response.setCharacterEncoding("utf-8");
 			response.setContentLength((int) file.length());
 			BufferedInputStream bis = null;
-			try {
-
-				OutputStream outputStream = response.getOutputStream();
-				outputStream.flush();
+			try (
+				OutputStream outputStream = response.getOutputStream();){
+				//outputStream.flush();
 				bis = new BufferedInputStream(new FileInputStream(file));
-				byte[] b = new byte[bis.available()];
+				/*byte[] b = new byte[bis.available()];
 				bis.read(b);
 				outputStream.write(b);
-				outputStream.flush();
-				/*
-				 * int i = bis.read(buffer); while (i != -1) { outputStream.write(buffer, 0, i);
-				 * i = bis.read(buffer); }
-				 */
+				outputStream.flush();*/
+
+				byte[] buffer = new byte[1024 * 512];
+				int i = bis.read(buffer);
+				while (i != -1) {
+					outputStream.write(buffer, 0, i);
+					i = bis.read(buffer);
+				}
+				outputStream.flush() ;
 				return "下载成功";
 			} catch (Exception e) {
 				e.printStackTrace();
-			} finally {
-				if (bis != null) {
-					try {
-						bis.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
 			}
 		}
 		return "下载失败";

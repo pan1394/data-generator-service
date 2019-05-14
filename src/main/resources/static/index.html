@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html>
 <head>
 <meta charset="utf8">
-<title>自動化測試數據生成工具</title>
+<!-- Bootstrap core CSS -->
+
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}" ></script>
+<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+<link th:href="@{/asserts/fileinput.min.css}" media="all" rel="stylesheet" type="text/css" />
+<script th:src="@{/asserts/fileinput.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/locales/zh.js"></script>
+<title>自动化测试数据生成工具</title>
 </head>
 <body>
-	<table>
-		<tr>
-			<td>
-			<a href="http://localhost:8080/download">下載模板</a>
-			</td>
+	<div class="page-header">
+    <h3 align="center">自动化测试数据生成工具
+        <small>ver 2.0</small>
+    </h3>
+	</div>
+	<div>
+	 	1. 下載模板: <a href="/download" >template.xlsx</a>
+	</div>
 
-		</tr>
-		<tr>
-			<td>
-			上傳：
-			</td>
-			<td>
-			 <form enctype="multipart/form-data" method="post" action="/upload/v2">
- 				<input type="file" name="file"/>
-   			    <input type="submit" value="生成测试数据！"/>
-    		 </form>
-			</td>
-		</tr>
-	</table>
+	<div>
+		2. 请选择上传文件 ：
+	</div>
+
+	<div>
+
+		<form enctype="multipart/form-data" method="post" action="/upload/v2">
+ 			 <input type="file" name="file" class="file"/>
+   		     <!-- <input type="submit" value="生成测试数据！"/> -->
+        </form>
+	</div>
 
 </body>
 </html>

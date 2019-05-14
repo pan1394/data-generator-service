@@ -6,12 +6,15 @@ import java.util.Calendar;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class MockUtils {
 
 	static SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/MM/DD");
 	static SimpleDateFormat formatDateTime = new SimpleDateFormat("YYYY/MM/DD HH:MM:SS");
 
 	public static String removeParent(String string) {
+		if(StringUtils.isBlank(string)) return "";
 		if (string.charAt(0) == '(' && string.charAt(string.length() - 1) == ')') {
 			string = string.substring(1, string.length() - 1);
 		}
