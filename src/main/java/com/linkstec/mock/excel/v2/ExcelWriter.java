@@ -3,6 +3,7 @@ package com.linkstec.mock.excel.v2;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -143,7 +144,12 @@ public class ExcelWriter {
 								}
 								//如果是主键 并且无值
 								if(StringUtils.isBlank(value) && "1".equals(isPk)) {
-									value = System.nanoTime()+"";
+									if(conditionList.get(currentField) != null) {
+										value = new ConditionRightPartHolder(executor, conditionList.get(currentField)).get();
+									}else {
+										value = MockUtils.formatTime.format(new Date());
+										value = value.substring(value.length() - MockUtils.getTypeDigits(typeStr));
+									}
 									//将主键值存入某个容器中　ｐｋＣｏｎｔａｉｎｅｒ．
 									for(RelationFieldMap map : lst) {
 										map.setValue(value);
@@ -155,9 +161,8 @@ public class ExcelWriter {
 								}
 							}
 							//非主键，并有条件的valuｅ　处理
-							else if (conditionList.get(tableAlias + "." + field) != null) {
-								value = new ConditionRightPartHolder(executor, conditionList.get(tableAlias + "." + field))
-										.get();
+							else if (conditionList.get(currentField) != null) {
+								value = new ConditionRightPartHolder(executor, conditionList.get(currentField)).get();
 							}else {
 								// 获取随机ｖａｌｕｅ
 								value = MockUtils.getValue(typeStr, testCase.getType());

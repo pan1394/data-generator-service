@@ -10,8 +10,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class MockUtils {
 
-	static SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/MM/DD");
-	static SimpleDateFormat formatDateTime = new SimpleDateFormat("YYYY/MM/DD HH:MM:SS");
+	static SimpleDateFormat formatDate = new SimpleDateFormat("YYYY/MM/dd");
+	static SimpleDateFormat formatDateTime = new SimpleDateFormat("YYYY/MM/dd HH:mm:SS");
+	public static SimpleDateFormat formatTime = new SimpleDateFormat("YYYYMMddHHmmSSSS");
+
 
 	public static String removeParent(String string) {
 		if(StringUtils.isBlank(string)) return "";
@@ -202,6 +204,14 @@ public class MockUtils {
 			return 0;
 		}
 		return Integer.parseInt(quStr);
+	}
+
+	public static int getTypeDigits(String fieldType) {
+		int digits = 5;
+		if (fieldType.indexOf("char") != -1) {
+			digits = getNumber(fieldType);
+		}
+		return digits;
 	}
 
 

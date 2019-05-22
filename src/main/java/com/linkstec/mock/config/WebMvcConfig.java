@@ -42,8 +42,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	 * @param registry
 	 */
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("data-generator.html");
-		registry.addViewController("/success").setViewName("success.html");
+		registry.addViewController("/").setViewName("data-generator");
+		registry.addViewController("/success").setViewName("success");
 	}
 
 	@Override

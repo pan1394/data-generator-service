@@ -48,18 +48,18 @@ public class IndexController {
 
 	@RequestMapping("/index")
 	public String index() {
-		return "/data-generator";
+		return "data-generator";
 	}
 
 	@GetMapping("/download")
-	public String download(HttpServletResponse response) {
+	public void download(HttpServletResponse response) {
 		String downloadFilePath = templatePath + File.separator + templateName;// 被下载的文件在服务器中的路径,
 		String ret = IndexController.download(response, downloadFilePath, templateName);
-		return ret;
+		return;
 	}
 
 	@RequestMapping(path = "/upload", method = RequestMethod.POST)
-	public String uploadImg(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
+	public void uploadImg(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
 		String contentType = file.getContentType();
 		String fileName = file.getOriginalFilename();
 		int start = fileName.lastIndexOf(File.separator);
@@ -79,13 +79,13 @@ public class IndexController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/index";
+		return;
 	}
 
 
 	@ResponseBody
 	@RequestMapping(path = "/upload/v2", method = RequestMethod.POST)
-	public String upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
+	public void upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
 		String contentType = file.getContentType();
 		String fileName = file.getOriginalFilename();
 		int start = fileName.lastIndexOf(File.separator);
@@ -105,7 +105,7 @@ public class IndexController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/index";
+		return;
 	}
 
 	private static String download(HttpServletResponse response, String downloadFile, String fileName) {
